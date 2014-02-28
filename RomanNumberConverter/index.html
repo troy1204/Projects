@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>
+			Roman to Number Converter
+		</title>
+		<style type="text/css">
+		#output
+		{
+			color:red;
+			font-size:48;
+		}
+		</style>
+		<script src="RtoN.js"></script>
+	</head>
+	<body>
+		<script>
+			function myfunc(){
+				var f = document.getElementById("fm");
+				var num = f.elements["input"]
+				var res = romanToNumber(num.value);
+				document.getElementById("output").innerHTML = res;
+			}
+		</script>
+		<h3>Enter a valid Roman Number in the box below : </h3>
+		<form id="fm">
+			<input type="text" name="input" pattern="(I|V|X|L|C|D|M)*">
+			<input type="button" onclick="myfunc()" value="convert">
+		</form>
+		<h3> The numeral equivalent is :</h3>
+		<div>
+			<p id="output"></p>
+		</div>
+	</body>
+</html>
