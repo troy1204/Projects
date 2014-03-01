@@ -40,7 +40,7 @@
 		</script>
 		<h3>Enter a valid Roman Number in the box below : </h3>
 		<form id="fm">
-			<input type="text" name="input">
+			<input type="text" name="input" onkeyup="if(event.keyCode == 13) { myfunc(); return false; }">
 			<input type="button" onclick="myfunc()" value="convert">
 		</form>
 		<h3> The integer equivalent is :</h3>
