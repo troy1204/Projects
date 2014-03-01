@@ -5,7 +5,14 @@ var converter = {
 	"L" : 50,
 	"C" : 100,
 	"D" : 500,
-	"M" : 1000
+	"M" : 1000,
+	"i" : 1, 
+	"v" : 5, 
+	"x" : 10,
+	"l" : 50,
+	"c" : 100,
+	"d" : 500,
+	"m" : 1000
 }
 
 function validateRomanNumber(num){
@@ -21,24 +28,21 @@ function getNumberForRoman(n){
 	var num_arr = n.split(""),
 		sum = 0;
 	for (var i = 0 ; i < num_arr.length; i++) {
-		console.log("Alphabet is : " + num_arr[i]);
 		if(converter[num_arr[i]] < converter[num_arr[i+1]]){
 			sum += (converter[num_arr[i+1]] - converter[num_arr[i]]);
 			i++;
 		}
-		else {
+		else 
 			sum += converter[num_arr[i]];
-		}
 	}
 	return sum;
 }
 
 function romanToNumber(roman){
 	var r = roman;
-	console.log("roman number is : " + r);
 	if(!validateRomanNumber(r)){
-		console.log("Not a valid roman number");
-		return;
+		document.getElementById("output").innerHTML = "Not a valid input. Try again!";
+		return 0;
 	}
 	var result = getNumberForRoman(r);
 	return result;

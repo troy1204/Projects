@@ -4,31 +4,51 @@
 			Roman to Number Converter
 		</title>
 		<style type="text/css">
-		#output
-		{
-			color:red;
-			font-size:48;
+		#output {
+			color : red;
+			font-size : 48;
+			margin : 0 auto;
+			height : 120;
+		}
+		#bk {
+			background-color : #81DAF5;
+			text-align : center;
+		}
+		#head { 
+			font-family : Courier;
+			color : #6E6E6E;
+		}
+		#text { 
+			font-family : Courier;
+			color : #6E6E6E;
+			margin : 0 auto;
+			width : 600;
 		}
 		</style>
 		<script src="RtoN.js"></script>
 	</head>
-	<body>
+	<body id="bk">
+		<h1 id="head">Roman to Integer Number Converter</h1>
 		<script>
 			function myfunc(){
 				var f = document.getElementById("fm");
 				var num = f.elements["input"]
 				var res = romanToNumber(num.value);
-				document.getElementById("output").innerHTML = res;
+				if(res)
+					document.getElementById("output").innerHTML = res;
 			}
 		</script>
 		<h3>Enter a valid Roman Number in the box below : </h3>
 		<form id="fm">
-			<input type="text" name="input" pattern="(I|V|X|L|C|D|M)*">
+			<input type="text" name="input">
 			<input type="button" onclick="myfunc()" value="convert">
 		</form>
-		<h3> The numeral equivalent is :</h3>
+		<h3> The integer equivalent is :</h3>
 		<div>
 			<p id="output"></p>
 		</div>
+		<p id="text">
+			A Roman Numeral consists of any of the letters representing numbers in the Roman numerical system: I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1,000. In this system, a letter placed after another of greater value adds (thus XVI or xvi is 16), whereas a letter placed before another of greater value subtracts (thus XC or xc is 90).
+		</p>
 	</body>
 </html>
