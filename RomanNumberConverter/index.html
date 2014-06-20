@@ -4,33 +4,33 @@
 			Roman to Number Converter
 		</title>
 		<style type="text/css">
-		#output {
-			color : red;
-			font-size : 48;
-			margin : 0 auto;
-			height : 120;
-		}
-		#bk {
-			background-color : #81DAF5;
-			text-align : center;
-		}
-		#head { 
-			font-family : Courier;
-			color : #6E6E6E;
-		}
-		#text { 
-			font-family : Courier;
-			color : #6E6E6E;
-			margin : 0 auto;
-			width : 600;
-		}
+			#output {
+				color : red;
+				font-size : 48;
+				margin : 0 auto;
+				height : 120;
+			}
+			#bk {
+				background-color : #81DAF5;
+				text-align : center;
+			}
+			#head { 
+				font-family : Courier;
+				color : #6E6E6E;
+			}
+			#text { 
+				font-family : Courier;
+				color : #6E6E6E;
+				margin : 0 auto;
+				width : 600;
+			}
 		</style>
 		<script src="RtoN.js"></script>
 	</head>
 	<body id="bk">
 		<h1 id="head">Roman to Integer Number Converter</h1>
 		<script>
-			function myfunc(){
+			function myFunc(){ 
 				var f = document.getElementById("fm");
 				var num = f.elements["input"]
 				var res = romanToNumber(num.value);
@@ -39,9 +39,9 @@
 			}
 		</script>
 		<h3>Enter a valid Roman Number in the box below : </h3>
-		<form id="fm">
-			<input type="text" name="input" onkeyup="if(event.keyCode == 13) { myfunc(); return false; }">
-			<input type="button" onclick="myfunc()" value="convert">
+		<form id="fm" onsubmit='myFunc(); return false;'>
+			<input type="text" name="input">
+			<input type="submit" value="convert">
 		</form>
 		<h3> The integer equivalent is :</h3>
 		<div>
