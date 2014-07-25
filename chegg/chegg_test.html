@@ -1,0 +1,114 @@
+<html>
+   <head>
+      <script type="text/javascript">
+         var N = 10;
+         var curr = 1;  
+         var nameArr = new Array();
+         var scoreArr = new Array();
+         function updateTitle()
+         {    
+            var title = document.getElementById('title');
+            if (curr > N)
+               title.innerHTML = "Data entered, click reset to try again";
+            else
+               title.innerHTML = "Enter data for student " +
+                  curr + "(total " + N + ")";
+         }
+
+         function reset()
+         {
+            curr = 1;     
+            document.getElementById('output').innerHTML = "";                        
+            updateTitle();
+            nameArr = new Array();
+            scoreArr = new Array();
+         }
+         function add()
+         {  
+            if (curr > N)
+               return;
+            var scoreTxt = document.getElementById('score');  
+            var nameTxt = document.getElementById('name');
+            var score = parseInt(scoreTxt.value);
+            var name = nameTxt.value;
+            if ( isNaN (score) )
+            {
+               alert("invalid score");
+               return;
+            }
+            nameTxt.value = "";
+            scoreTxt.value = "";
+            curr++;
+            nameArr.push(name);
+            scoreArr.push(score);
+                         
+            updateTitle();
+            if (curr > N)
+            {
+               var result = calcResult();
+               document.getElementById('output').innerHTML = result;
+            }
+         }
+         function grade(score)
+         {
+            if (score >= 90)
+               return "A";
+            else if (score >= 80)
+               return "B";    
+            else if (score >= 70)
+               return "C";
+            else if (score >= 60)
+               return "D";
+            return "F";
+         }
+         function calcResult()
+         {
+            var sum = 0;
+            var highest = 0;
+            var lowest = 0;
+            var avg = 0;
+            var i;
+            for (i = 0; i < N; i++)
+            {
+               sum += scoreArr[i];
+               if (i == 0 || scoreArr[i] > highest)
+                  highest = scoreArr[i];  
+               if (i == 0 || scoreArr[i] < lowest)
+                  lowest = scoreArr[i];
+            }
+            avg = sum / N;
+            var msg = "";
+            msg += "<p>Sum: " + sum + "</p>";  
+            msg += "<p>Average: " + avg + "</p>";
+            msg += "<p>Highest: " + highest + "</p>";
+            msg += "<p>Lowest: " + lowest + "</p>";
+            msg += "<table border='1'>";
+            msg += "<tr><th>Name</th><th>Score</th><th>Grade</th></tr>";
+            for (i = 0; i < N; i++)
+            {
+               msg += "<tr><td>" + nameArr[i] + "</td>";
+              
+               if (scoreArr[i] == lowest)
+                  msg += "<td style='background-color: red'>";
+               else if (scoreArr[i] == highest)         
+                  msg += "<td style='background-color: green'>";
+               else
+                  msg += "<td>";
+              
+               msg += "" + scoreArr[i] + "</td>";
+               msg += "<td>" + grade(scoreArr[i]) + "</td></tr>";
+            }
+            msg += "</table>";
+            return msg;
+         }
+      </script>
+   </head>
+   <body>
+      Name : <input type="text" id="name"> <br><br>
+      Score : <input type="text" id="score"> <br><br>
+      <button type="button" id="add" onclick="add()" >Add</button>
+      <button type="button" id="reset" onclick="reset()" >Reset</button>
+      <h5 id="title"><h5>
+      <p id="output"></p>
+   </body>
+</html>

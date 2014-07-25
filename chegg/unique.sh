@@ -1,6 +1,6 @@
 import string
-print "Enter filename"
-filename = raw_input()
+print ("Enter filename")
+filename = input()
 filedata = open(filename, 'r').read()
 answer = [];
 def getUniqueWords(allWords) :
@@ -12,6 +12,6 @@ def getUniqueWords(allWords) :
                 uniqueWords.append(i)
     return uniqueWords
 answer = sorted(getUniqueWords(filedata.splitlines()));
-print "Sorted unique words : "
+print ("Sorted unique words : ")
 for k in answer:
-    print k;
+    print (k);
