@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1200" height="400"></canvas>
+    <script>
+      //To draw original color image
+      function drawImage(imageObj) {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var x = 69;
+        var y = 50;
+        context.drawImage(imageObj2, x, y);
+      }
+
+      //To draw as black and white/grayscale
+      function drawImage2(imageObj2) {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var x = 370;
+        var y = 50;
+        context.drawImage(imageObj2, x, y);
+        var imageData = context.getImageData(x, y, imageObj2.width, imageObj2.height);
+        var data = imageData.data;
+        for(var i = 0; i < data.length; i += 4) {
+          var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+          // red
+          data[i] = brightness;
+          // green
+          data[i + 1] = brightness;
+          // blue
+          data[i + 2] = brightness;
+        }
+        // overwrite original image
+        context.putImageData(imageData, x, y);
+      }
+
+      //To draw as sepia 
+      function drawImage3(imageObj3) {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var x = 700;
+        var y = 50;
+        context.drawImage(imageObj3, x, y);
+        var imageData = context.getImageData(x, y, imageObj3.width, imageObj3.height);
+        var data = imageData.data;
+        for(var i = 0; i < data.length; i += 4) {
+          var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+          // red
+          var r = data[i];
+          var g = data[i + 1];
+          var b = data[i + 2];
+          data[i]     = (r * 0.393)+(g * 0.769)+(b * 0.189); // red
+          data[i + 1] = (r * 0.349)+(g * 0.686)+(b * 0.168); // green
+          data[i + 2] = (r * 0.272)+(g * 0.534)+(b * 0.131); // blue
+        }
+        // overwrite original image
+        context.putImageData(imageData, x, y);
+      }
+
+      var imageObj = new Image();
+      imageObj.onload = function() {
+        drawImage(this);
+      };
+      imageObj.src = 'image.jpeg';
+      
+      var imageObj2 = new Image();
+      imageObj2.onload = function() {
+        drawImage2(this);
+      };
+      imageObj2.src = 'image.jpeg';
+
+      var imageObj3 = new Image();
+      imageObj3.onload = function() {
+        drawImage3(this);
+      };
+      imageObj3.src = 'image.jpeg';
+    </script>
+  </body>
+</html>      
